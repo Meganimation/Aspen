@@ -29,6 +29,7 @@ const StyledButton = styled.button`
     margin-right: 0;
     margin-left: 0;
   }
+  font-family: American Typewriter;
   background-color: #a1615f;
   font-size: 1rem;
   color: cornsilk;
@@ -242,7 +243,7 @@ function App() {
   };
 
   let coffeeFacts = [
-    "The drink dates back to 800 A.D",
+    "Humans drinking coffee dates back to 800 A.D",
     "Coffee beans are technically seeds",
     "The Marquee HTML tag was deprecated ages ago but I still miss it.",
   ];
