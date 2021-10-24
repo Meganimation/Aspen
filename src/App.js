@@ -19,6 +19,8 @@ const NavItem = styled.span`
 const StyledButton = styled.button`
   @media ${device.mobile} {
     height: 80px;
+    margin-right: 0px;
+    margin-left: 0px;
   }
   background-color: #a1615f;
   font-size: 15px;
@@ -29,6 +31,20 @@ const StyledButton = styled.button`
   border-width: 1px;
   border-color: cornsilk;
   height: 3em;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+  
+  &:hover{
+    background-color: #807C6E;
+    border-bottom-width: 3px;
+  }
+
+  &:active{
+    background-color: #807C6E;
+    border-bottom-width: 0px;
+   
+  }
 `;
 
 const StyledInput = styled.input`
@@ -50,16 +66,16 @@ const StyledNav = styled.nav`
   @media ${device.mobile} {
     z-index: 2;
     background-color: rgba(0, 0, 0, 0.5);
-    justify-content: space-around;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     transition: 0.5s;
     position: absolute;
     height: 100%;
     bottom: 0px;
     right: 1px;
-    width: 40%;
-    right: ${(props) => (props.menu ? "-15vw" : "0")};
+    height: 70%;
+    width: 100%;
+    bottom: ${(props) => (props.menu ? "-15vw" : "0")};
     opacity: ${(props) => (props.menu ? "0%" : "100%")};
   }
 
@@ -107,9 +123,9 @@ const Loader = styled.div`
 `;
 
 const StyledFooter = styled.footer`
-position: absolute;
-background-color: rgba(0, 0, 0, 0.5);
-bottom: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
 `
 
 const Facts = styled.i`
