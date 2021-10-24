@@ -26,8 +26,11 @@
 <h2> What I Didn't get time to implement</h2>
   <li> Better Media Queries </li>
    <li> Better Housestyle overall </li>
+    <li> Friendly Accessibility</li>
+    <li> Better Map Interactivity (Abilty to save locations, see distance in between them, etc)</li>
    <li> Routes </li>
     <li> Redux </li>
     <li> Database setup</li>
       <li> oAuth</li>
        <li> ...and More</li>
+       
