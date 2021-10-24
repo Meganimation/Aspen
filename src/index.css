@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: none;
 }
 
 code {
@@ -13,7 +14,7 @@ code {
 }
 
 .leaflet-container {
-  width: 90vw;
-  height: 90vh;
+  width: 80vw;
+  height: 80vh;
   resize: both;
 }

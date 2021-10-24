@@ -7,10 +7,22 @@ const MainWrapper = styled.main`
   align-items: center;
 `;
 
+const StyledNavWrapper = styled.header`
+
+    height: 5em;
+`
+
 const StyledButton = styled.button`
-  background-color: black;
-  font-size: 32px;
-  color: white;
+    background-color: darkolivegreen;
+    font-size: 15px;
+    color: cornsilk;
+    border-radius: 10px;
+    padding: 12px;
+    border-style: dotted;
+    border-width: 2px;
+    border-color: darkGray;
+    height: 3em;
+
 `;
 
 const MapWrapper = styled.section`
@@ -20,12 +32,16 @@ const MapWrapper = styled.section`
 
 const StyledNav = styled.nav`
   z-index: 2;
-  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
   transition: 0.5s;
   position: absolute;
-  height: 100%;
-  width: ${(props) => (!props.menu ? "15vw" : "30vw")};
-  left: ${(props) => (props.menu ? "-15vw" : "0")};
+  height: 3em;
+  top: 0px;
+  right: 1px;
+  width: 90%;
+  right: ${(props) => (props.menu ? "-15vw" : "0")};
   opacity: ${(props) => (props.menu ? "0%" : "100%")};
 `;
 
@@ -85,14 +101,14 @@ function ErrorMessage({ error }) {
         </h1>
       </div>
       <h3 style={{ position: "inherit", marginTop: "60px" }}>
-        {" "}
-        {error.toString()}{" "}
+        {error.toString()}
       </h3>
     </section>
   );
 }
 
 function App() {
+  const URL = 'https://raw.githubusercontent.com/aspencapital/candidate-project-ui-ux/master/data/coordinates.geojson'
   const position = [45.514242, -122.683175];
 
   const [data, setData] = useState(false);
@@ -100,14 +116,15 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [menu, setMenu] = useState(true);
 
+
   useEffect(() => {
-    return !data ? fetchStarbucksData() : null;
+    return (!data ? fetchStarbucksData() : null)
   }, [data]);
 
   const fetchStarbucksData = () => {
-    let urlWithString = `https://raw.githubusercontent.com/aspencapital/candidate-project-ui-ux/master/data/coordinates.geojson`;
 
-    return fetch(urlWithString)
+
+    return fetch(URL)
       .then((res) => {
         if (!res.ok) {
           throw Error(`Error code: ${res.status}. Please try again.`);
@@ -125,7 +142,7 @@ function App() {
   };
 
   if (!data) return <Loader />;
-  if (data[0] === "error") return <ErrorMessage error={data[1]} />;
+  if (data[0] === "error") return (<><ErrorMessage error={data[1]} /><button onMouseUp={()=>{fetchStarbucksData()}}>Try Again</button></>);
 
   const handleFilter = () => {
     console.log("filtering", searchTerm);
@@ -148,6 +165,7 @@ function App() {
 
   return (
     <main>
+      <StyledNavWrapper>
       <StyledButton
         onClick={() => {
           setMenu(!menu);
@@ -155,7 +173,6 @@ function App() {
       >
         {menu ? "Show Menu" : "Hide Menu"}
       </StyledButton>
-      {/* <div style={{position: 'absolute'}}> */}
       <StyledNav menu={menu}>
         <StyledButton
           onClick={() => {
@@ -190,7 +207,7 @@ function App() {
           Search for all in your area
         </StyledButton>
       </StyledNav>
-      {/* </div> */}
+      </StyledNavWrapper>
 
       <MainWrapper>
         <MapWrapper>
@@ -202,20 +219,34 @@ function App() {
 
             {filteredData.map((ele) => {
               return (
-                <Marker
-                  key={ele.geometry.coordinates[1]}
-                  position={[
-                    ele.geometry.coordinates[1],
-                    ele.geometry.coordinates[0],
-                  ]}
-                ></Marker>
+                <>
+                  <Marker
+                    key={ele.geometry.coordinates[1]}
+                    position={[
+                      ele.geometry.coordinates[1],
+                      ele.geometry.coordinates[0],
+                    ]}
+                  >
+                    <Popup
+                      position={[
+                        ele.geometry.coordinates[1],
+                        ele.geometry.coordinates[0],
+                      ]}
+                    >
+                      <address>
+                        <b>{ele.properties.name}</b> <br />
+                        <i>
+                          {ele.properties.address}, <br />
+                          {ele.properties.zipCode}, 
+                        </i>
+                        <i> {ele.properties.city} </i>
+                      </address>
+                    </Popup>
+                  </Marker>
+                </>
               );
             })}
-            <Marker position={position}>
-              <Popup>
-                Apparently. <br /> I can customize this.
-              </Popup>
-            </Marker>
+            <Marker position={position}></Marker>
           </MapContainer>
         </MapWrapper>
       </MainWrapper>
