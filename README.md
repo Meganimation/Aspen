@@ -31,6 +31,8 @@
    <li> Routes </li>
     <li> Redux </li>
     <li> Database setup</li>
+      <li> Perhaps spacing the components out better</li>
+        <li> I wanted to add a Modal for the Mobile Query</li>
       <li> oAuth</li>
        <li> ...and More</li>
        
