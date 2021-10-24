@@ -2,28 +2,46 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import React, { useState, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
 
+import { device } from './Breakpoints';
+
 const MainWrapper = styled.main`
   display: flex;
   align-items: center;
 `;
 
 const StyledNavWrapper = styled.header`
-
     height: 5em;
+    margin-top: 15px;
 `
 
+const NavItem = styled.span``
+
 const StyledButton = styled.button`
-    background-color: darkolivegreen;
+
+@media ${device.mobile} { 
+  height: 80px;
+}
+    background-color: #A1615F;
     font-size: 15px;
     color: cornsilk;
     border-radius: 10px;
     padding: 12px;
     border-style: dotted;
-    border-width: 2px;
-    border-color: darkGray;
+    border-width: 1px;
+    border-color: cornsilk;
     height: 3em;
-
 `;
+
+const StyledInput = styled.input`
+    background: cornsilk;
+    height: 3em;
+    color: darkGray;
+    border-style: dotted;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: cornsilk;
+
+`
 
 const MapWrapper = styled.section`
   margin: auto;
@@ -31,10 +49,29 @@ const MapWrapper = styled.section`
 `;
 
 const StyledNav = styled.nav`
+
+
+@media ${device.mobile} { 
   z-index: 2;
+  background-color:rgba(0, 0, 0, 0.5);
   justify-content: space-around;
   display: flex;
+  flex-direction: column;
+  transition: 0.5s;
+  position: absolute;
+  height: 100%;
+  bottom: 0px;
+  right: 1px;
+  width: 40%;
+  right: ${(props) => (props.menu ? "-15vw" : "0")};
+  opacity: ${(props) => (props.menu ? "0%" : "100%")};
+}
+
+@media ${device.desktop} {
+  margin-top: 15px; 
+  display: flex;
   flex-direction: row;
+  justify-content: right;
   transition: 0.5s;
   position: absolute;
   height: 3em;
@@ -43,6 +80,8 @@ const StyledNav = styled.nav`
   width: 90%;
   right: ${(props) => (props.menu ? "-15vw" : "0")};
   opacity: ${(props) => (props.menu ? "0%" : "100%")};
+}
+
 `;
 
 const loaderAnimation = keyframes`
@@ -147,6 +186,7 @@ function App() {
   const handleFilter = () => {
     console.log("filtering", searchTerm);
 
+
     const filteredStations =
       searchTerm.toUpperCase() === "ALL"
         ? data
@@ -156,7 +196,9 @@ function App() {
               .includes(searchTerm.toUpperCase())
           );
 
-    setFilteredData(filteredStations);
+          
+
+          !filteredStations.length ? alert(`'We cannot find a location including ${searchTerm}. Please try again`) : setFilteredData(filteredStations);
 
     console.log(data);
 
@@ -166,6 +208,7 @@ function App() {
   return (
     <main>
       <StyledNavWrapper>
+   
       <StyledButton
         onClick={() => {
           setMenu(!menu);
@@ -174,28 +217,25 @@ function App() {
         {menu ? "Show Menu" : "Hide Menu"}
       </StyledButton>
       <StyledNav menu={menu}>
-        <StyledButton
-          onClick={() => {
-            console.log(data);
-          }}
-        >
-          Console log the data
-        </StyledButton>
-
-        <input
+        <NavItem>
+        <StyledInput
           placeholder={"eg. Cornell Road"}
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}
         />
+
+        
         <StyledButton
           onClick={() => {
             handleFilter();
           }}
         >
-          search for a starbucks on {searchTerm}
+          search
         </StyledButton>
+        </NavItem>
+        <NavItem>
         <StyledButton
           onMouseDown={() => {
             setSearchTerm("All");
@@ -204,8 +244,9 @@ function App() {
             handleFilter();
           }}
         >
-          Search for all in your area
+          find all
         </StyledButton>
+        </NavItem>
       </StyledNav>
       </StyledNavWrapper>
 
