@@ -8,51 +8,57 @@ const MainWrapper = styled.main`
   align-items: center;
 `;
 
-const StyledNavWrapper = styled.header`
-  height: 5em;
-  margin-top: 15px;
+const Title = styled.h3`
+  position: absolute;
+  display: inline-flex;
+  left: 15%;
+  color: cornsilk;
+  margin-top: 1rem;
 `;
 
-const NavItem = styled.span`
+const StyledNavWrapper = styled.header`
+  height: 5em;
+  margin-top: 1rem;
 `;
+
+const NavItem = styled.span``;
 
 const StyledButton = styled.button`
   @media ${device.mobile} {
-    height: 80px;
-    margin-right: 0px;
-    margin-left: 0px;
+    height: 5rem;
+    margin-right: 0;
+    margin-left: 0;
   }
   background-color: #a1615f;
-  font-size: 15px;
+  font-size: 1rem;
   color: cornsilk;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   padding: 12px;
   border-style: dotted;
   border-width: 1px;
   border-color: cornsilk;
-  height: 3em;
+  height: 3rem;
   cursor: pointer;
-  margin-right: 10px;
-  margin-left: 10px;
-  
-  &:hover{
-    background-color: #807C6E;
+  margin-right: 0.625rem;
+  margin-left: 0.625rem;
+
+  &:hover {
+    background-color: #807c6e;
     border-bottom-width: 3px;
   }
 
-  &:active{
-    background-color: #807C6E;
+  &:active {
+    background-color: #807c6e;
     border-bottom-width: 0px;
-   
   }
 `;
 
 const StyledInput = styled.input`
   background: cornsilk;
-  height: 3em;
+  height: 3rem;
   color: darkGray;
   border-style: dotted;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   border-width: 1px;
   border-color: cornsilk;
 `;
@@ -80,13 +86,13 @@ const StyledNav = styled.nav`
   }
 
   @media ${device.desktop} {
-    margin-top: 15px;
+    margin-top: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: right;
     transition: 0.5s;
     position: absolute;
-    height: 3em;
+    height: 3rem;
     top: 0px;
     right: 1px;
     width: 90%;
@@ -98,12 +104,12 @@ const StyledNav = styled.nav`
 const loaderAnimation = keyframes`
  0% {
   transform: rotate(0deg);
-  border: 36px solid #f3f3f3; 
-  border-top: 36px solid darkGray;
+  border: 2.25rem solid #f3f3f3; 
+  border-top: 2.25rem solid darkGray;
  }
   100% {
-    border: 6px solid #f3f3f3; 
-    border-top: 6px solid darkGray; 
+    border: 0.375rem solid #f3f3f3; 
+    border-top: 0.375rem solid darkGray; 
     transform: rotate(360deg);
   }
 }
@@ -114,11 +120,11 @@ const loaderAnimationRule = css`
 `;
 
 const Loader = styled.div`
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid lightGray;
+  border: 0.375rem solid #f3f3f3;
+  border-top: 0.375rem solid lightGray;
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 4.375rem;
+  height: 4.375rem;
   animation: ${loaderAnimationRule};
 `;
 
@@ -126,11 +132,11 @@ const StyledFooter = styled.footer`
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   bottom: 0;
-`
+`;
 
 const Facts = styled.i`
-  margin-right: 9em;
-`
+  margin-right: 9rem;
+`;
 
 function ErrorMessage({ error }) {
   return (
@@ -143,15 +149,15 @@ function ErrorMessage({ error }) {
       <div
         style={{
           position: "absolute",
-          height: "50px",
-          width: "50px",
+          height: "3.125rem",
+          width: "3.125rem",
           background: "red",
           borderRadius: "100px",
         }}
       >
         <h1
           style={{
-            fontSize: "50px",
+            fontSize: "3.125rem",
             textAlign: "center",
             color: "white",
             margin: "auto",
@@ -160,7 +166,7 @@ function ErrorMessage({ error }) {
           !
         </h1>
       </div>
-      <h3 style={{ position: "inherit", marginTop: "60px" }}>
+      <h3 style={{ position: "inherit", marginTop: "3.75rem" }}>
         {error.toString()}
       </h3>
     </section>
@@ -232,20 +238,20 @@ function App() {
         )
       : setFilteredData(filteredStations);
 
-    console.log(data);
-
     return filteredStations;
   };
 
-  let i = 0
-
-  
-
-    let coffeeFacts = ['The drink dates back to 800 A.D', 'Coffee beans are technically seeds', 'The Marquee HTML tag was deprecated ages ago but I still miss it.']
+  let coffeeFacts = [
+    "The drink dates back to 800 A.D",
+    "Coffee beans are technically seeds",
+    "The Marquee HTML tag was deprecated ages ago but I still miss it.",
+  ];
 
   return (
     <main>
       <StyledNavWrapper>
+        <title>Welcome to Coffee in Portland</title>
+
         <StyledButton
           onClick={() => {
             setMenu(!menu);
@@ -253,6 +259,12 @@ function App() {
         >
           {menu ? "Show Menu" : "Hide Menu"}
         </StyledButton>
+        <Title menu={menu}>
+          {" "}
+          {menu
+            ? "Welcome to Coffee in Portland!"
+            : "Enter an address to find some Coffee:"}
+        </Title>
         <StyledNav menu={menu}>
           <NavItem>
             <StyledInput
@@ -327,8 +339,16 @@ function App() {
           </MapContainer>
         </MapWrapper>
       </MainWrapper>
-      {/* eslint-disable-next-line */}
-      <StyledFooter><marquee style={{color: 'cornsilk'}}>{coffeeFacts.map(fact => (<><b>Did You Know?... </b> <Facts>{fact}</Facts> </>))}</marquee></StyledFooter>
+      <StyledFooter>
+        {/* eslint-disable-next-line */}
+        <marquee style={{ color: "cornsilk" }}>
+          {coffeeFacts.map((fact) => (
+            <>
+              <b>Did You Know?... </b> <Facts>{fact}</Facts>{" "}
+            </>
+          ))}
+        </marquee>
+      </StyledFooter>
     </main>
   );
 }
