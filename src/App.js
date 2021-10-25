@@ -87,7 +87,7 @@ const StyledNav = styled.nav`
     height: 100%;
     bottom: 0px;
     right: 1px;
-    height: 70%;
+    height: 30%;
     width: 100%;
     bottom: ${(props) => (props.menu ? "-15vw" : "0")};
     opacity: ${(props) => (props.menu ? "0%" : "100%")};
