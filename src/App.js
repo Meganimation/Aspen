@@ -261,6 +261,7 @@ function App() {
         <title>Welcome to Coffee in Portland</title>
 
         <StyledButton
+        
           onClick={() => {
             setMenu(!menu);
           }}
@@ -268,7 +269,6 @@ function App() {
           {menu ? "Show Menu" : "Hide Menu"}
         </StyledButton>
         <Title menu={menu}>
-          {" "}
           {menu
             ? "Welcome to Coffee in Portland!"
             : "Enter an address to find some Coffee:"}
@@ -276,6 +276,7 @@ function App() {
         <StyledNav menu={menu}>
           <NavItem>
             <StyledInput
+            onKeyPress={(e)=>{e.key === "Enter" ? handleFilter() : console.log(null) }}
               placeholder={"eg. Taylor Street"}
               value={searchTerm}
               onChange={(e) => {
