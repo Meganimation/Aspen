@@ -229,7 +229,6 @@ function App() {
     );
 
   const handleFilter = () => {
-    console.log("filtering", searchTerm);
 
     const filteredStations =
       searchTerm.toUpperCase() === "ALL"

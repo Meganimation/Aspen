@@ -10,7 +10,6 @@ const size = {
   }
 
   export const device = {
-
     mobile: `(max-width: ${size.largeMobile})`,
     desktop: `(min-width: ${size.largeMobile})`,
   };
