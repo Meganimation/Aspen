@@ -292,7 +292,7 @@ function App() {
             </StyledButton>
           </NavItem>
           <NavItem>
-            <StyledButton
+            {data !== filteredData ? <StyledButton
               onMouseDown={() => {
                 setSearchTerm("All");
               }}
@@ -301,7 +301,7 @@ function App() {
               }}
             >
               find all
-            </StyledButton>
+            </StyledButton> : null}
           </NavItem>
         </StyledNav>
       </StyledNavWrapper>
