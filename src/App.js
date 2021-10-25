@@ -9,6 +9,12 @@ const MainWrapper = styled.main`
 `;
 
 const Title = styled.h3`
+
+@media ${device.mobile} {
+  position: absolute;
+  top: 0;
+  left: 35%;
+}
   position: absolute;
   display: inline-flex;
   left: 15%;
@@ -77,6 +83,7 @@ const StyledNav = styled.nav`
     flex-direction: row;
     transition: 0.5s;
     position: absolute;
+    justify-content: space-around;
     height: 100%;
     bottom: 0px;
     right: 1px;
