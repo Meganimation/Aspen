@@ -236,6 +236,9 @@ function App() {
         : data.filter((ele) =>
             ele.properties.address
               .toUpperCase()
+              .includes(searchTerm.toUpperCase()) ||
+              ele.properties.name
+              .toUpperCase()
               .includes(searchTerm.toUpperCase())
           );
 
