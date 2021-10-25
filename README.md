@@ -4,6 +4,7 @@
     <li> 1. Clone this github repo using the clone link above </li>
     <li> 2. Open the folder in your text editor of choice <i> (Fun Fact: My personal favorite is VS Code but I originally started on DreamWeaver!)</i></li>
     <li> 3. In the Terminal, run <code>npm install</code> </li>
+    <li> 4. Once that's installed, hit <code>npm start</code> </li>
 
 <h2> What I've Tried To Implement </h2>
  <li> React Library</li>
