@@ -269,7 +269,7 @@ function App() {
         <StyledNav menu={menu}>
           <NavItem>
             <StyledInput
-              placeholder={"eg. Cornell Road"}
+              placeholder={"eg. Taylor Street"}
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
